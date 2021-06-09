@@ -29,22 +29,12 @@ public class KMP {
 
     public boolean match(String s1, String s2) {
         int[] next = buildNextArr(s2);
-        for (int k = 0; k < s1.length(); k++) {
-            int i = k, j = 0;
-            while (i < s1.length()) {
-                if (s1.charAt(i) == s2.charAt(j)) {
-                    i++;
-                    j++;
-                } else {
-                    j = next[j];
-                    if (j == -1) {
-                        i++;
-                        j = 0;
-                    }
-                }
-
-                if (j >= s2.length()) return true;
+        int s2Index = 0;
+        for (char c : s1.toCharArray()) {
+            while (s2.charAt(s2Index) != c) {
+                    s2Index = next[s2Index];
             }
+            if(++s2Index == s2.length()) return true;
         }
 
         return false;
