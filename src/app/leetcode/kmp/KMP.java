@@ -4,7 +4,7 @@ package app.leetcode.kmp;
  * @author dimmy
  */
 public class KMP {
-    public int[] buildNextArr(String s) {
+    public static int[] buildNextArr(String s) {
         int length = s.length();
         char[] chars = s.toCharArray();
         int[] next = new int[length];
