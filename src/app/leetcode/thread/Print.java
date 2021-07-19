@@ -2,7 +2,6 @@ package app.leetcode.thread;
 
 import sun.misc.Unsafe;
 
-import javax.swing.text.View;
 import java.lang.reflect.Field;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.LockSupport;
@@ -24,7 +23,7 @@ public class Print {
         condition = lock.newCondition();
     }
 
-    public void a() {
+    public synchronized void a() {
         LockSupport.setCurrentBlocker(this);
         System.out.println("start a");
         LockSupport.park();
@@ -66,11 +65,11 @@ public class Print {
                 Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
                 theUnsafe.setAccessible(true);
                 Unsafe unsafe = (Unsafe) theUnsafe.get(null);
-                unsafe.compareAndSwapInt(count, unsafe.objectFieldOffset(field) ,1, 3);
+                unsafe.compareAndSwapInt(count, unsafe.objectFieldOffset(field), 1, 3);
                 System.out.println(n);
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
-            }catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
 

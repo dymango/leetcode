@@ -31,10 +31,27 @@ public class Main {
 //            }
 //        }).start();
 
-//        FooBar fooBar = new FooBar(3);
+        FooBar fooBar = new FooBar(3);
+        new Thread(() -> {
+            try {
+                fooBar.foo(runnable);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            try {
+                fooBar.bar(runnable2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+//
+//        FizzBuzz fizzBuzz = new FizzBuzz(15);
 //        new Thread(() -> {
 //            try {
-//                fooBar.foo(runnable);
+//                fizzBuzz.buzz(()-> System.out.println("buzz"));
 //            } catch (InterruptedException e) {
 //                e.printStackTrace();
 //            }
@@ -42,43 +59,26 @@ public class Main {
 //
 //        new Thread(() -> {
 //            try {
-//                fooBar.bar(runnable2);
+//                fizzBuzz.fizz(()-> System.out.println("fizz"));
 //            } catch (InterruptedException e) {
 //                e.printStackTrace();
 //            }
 //        }).start();
-
-        FizzBuzz fizzBuzz = new FizzBuzz(15);
-        new Thread(() -> {
-            try {
-                fizzBuzz.buzz(()-> System.out.println("buzz"));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-
-        new Thread(() -> {
-            try {
-                fizzBuzz.fizz(()-> System.out.println("fizz"));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-        new Thread(() -> {
-            try {
-                fizzBuzz.fizzbuzz(()-> System.out.println("FB"));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-
-        new Thread(() -> {
-            try {
-                fizzBuzz.number(value -> System.out.println(value));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
+//        new Thread(() -> {
+//            try {
+//                fizzBuzz.fizzbuzz(()-> System.out.println("FB"));
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }).start();
+//
+//        new Thread(() -> {
+//            try {
+//                fizzBuzz.number(value -> System.out.println(value));
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }).start();
 
 
     }
