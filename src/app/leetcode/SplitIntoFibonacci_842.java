@@ -118,4 +118,74 @@ public class SplitIntoFibonacci_842 {
         if (pre == null || pre2 == null) return true;
         return pre + pre2 == num;
     }
+
+    /**
+     * 将给定的字符串拆分成斐波那契式序列，可以通过回溯的方法实现。
+     *
+     *
+     * 使用列表存储拆分出的数，回溯过程中维护该列表的元素，列表初始为空。遍历字符串的所有可能的前缀，作为当前被拆分出的数，然后对剩余部分继续拆分，直到整个字符串拆分完毕。
+     *
+     * 行拆分，否则不进行拆分。
+     *
+     * 根据斐波那契式序列的要求，从第 33 个数开始，每个数都等于前 22 个数的和，因此从第 33 个数开始，需要判断拆分出的数是否等于前 22 个数的和，只有满足要求时才进行拆分，否则不进行拆分。
+     *
+     * 符合要求的，不可能继续拆分得到斐波那契式序列；
+     *
+     * 回溯过程中，还有三处可以进行剪枝操作。
+     *
+     * 拆分出的数如果不是 00，则不能以 00 开头，因此如果字符串剩下的部分以 00 开头，就不需要考虑拆分出长度大于 11 的数，因为长度大于 11 的数以 00 开头是不符合要求的，不可能继续拆分得到斐波那契式序列；
+     *
+     * 拆分出的数必须符合 3232 位有符号整数类型，即每个数必须在 [0,2^{31}-1][0,2
+     * 31
+     *  −1] 的范围内，如果拆分出的数大于 2^{31}-12
+     *
+     * 31
+     *
+     *  −1，则不符合要求，长度更大的数的数值也一定更大，一定也大于 2^{31}-12
+     *
+     * 31
+     *
+     *  −1，因此不可能继续拆分得到斐波那契式序列；
+     * g-shu-zu-chai-fen-cheng-fei-bo-na-qi-ts6c/
+     * 如果列表中至少有 22 个数，并且拆分出的数已经大于最后 22 个数的和，就不需要继续尝试拆分了。
+     *
+     * @param num
+     * @return
+     */
+    public List<Integer> splitIntoFibonacciV2(String num) {
+        List<Integer> list = new ArrayList<Integer>();
+        backtrack(list, num, num.length(), 0, 0, 0);
+        return list;
+    }
+
+    public boolean backtrack(List<Integer> list, String num, int length, int index, int sum, int prev) {
+        if (index == length) {
+            return list.size() >= 3;
+        }
+        long currLong = 0;
+        for (int i = index; i < length; i++) {
+            if (i > index && num.charAt(index) == '0') {
+                break;
+            }
+            currLong = currLong * 10 + num.charAt(i) - '0';
+            if (currLong > Integer.MAX_VALUE) {
+                break;
+            }
+            int curr = (int) currLong;
+            if (list.size() >= 2) {
+                if (curr < sum) {
+                    continue;
+                } else if (curr > sum) {
+                    break;
+                }
+            }
+            list.add(curr);
+            if (backtrack(list, num, length, i + 1, prev + curr, curr)) {
+                return true;
+            } else {
+                list.remove(list.size() - 1);
+            }
+        }
+        return false;
+    }
 }
