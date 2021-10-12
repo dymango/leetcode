@@ -1,5 +1,7 @@
 package app.leetcode;
 
+import java.util.List;
+
 /**
  * @author dimmy
  */
@@ -38,6 +40,7 @@ public class FindSecretWord_843 {
      */
 
     public void findSecretWord(String[] wordlist, Master master) {
+        List<String> words = List.of(wordlist);
 
     }
 }
