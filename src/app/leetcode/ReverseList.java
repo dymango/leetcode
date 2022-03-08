@@ -44,15 +44,16 @@ public class ReverseList {
      * @return
      */
     public ListNode reverseListV2(ListNode head) {
-        ListNode prev = null;
-        ListNode curr = head;
-        while (curr != null) {
-            ListNode next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+        ListNode pre = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode temp = current.next;
+            current.next = pre;
+            pre = current;
+            current = temp;
         }
-        return prev;
+
+        return pre;
     }
 
     public static void main(String[] args) {
