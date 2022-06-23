@@ -2,6 +2,7 @@ package app.metaapp;// 本试卷唯一 ID: 0BEDC0EDA7404A30905CC5D01B3C5AC6, 请
 /* 注意, 这里不要写包名. 留空 */
 /* 这里如果用到其他的类, 记得要引用, 否则编译不过 */
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -129,7 +130,6 @@ class MetaJavaQuestionSheet {
     */
     public static String qn3 = "C";
 
-
     /* qn4:
         若进栈序列为a，b，c，d，e，f，进栈和出栈可以穿插进行，则不可能出现的出栈序列是()
 
@@ -230,7 +230,6 @@ class MetaJavaQuestionSheet {
         E. SQL_2
     */
     public static String qn6 = "BCDE";
-
 
     /* qn7:
         已知一个完全二叉树的第6层有3个叶子结点，则整个二叉树的结点数最多有
