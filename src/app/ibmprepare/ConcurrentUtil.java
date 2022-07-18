@@ -1,10 +1,10 @@
 package app.ibmprepare;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author dimmy
@@ -17,59 +17,89 @@ public class ConcurrentUtil {
     }
 
     public void exec() {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<Integer> executorServiceFuture = executorService.submit(() -> {
+        ThreadFactory threadFactory = new ThreadFactoryImpl("a");
+        ExecutorService executorService = Executors.newSingleThreadExecutor(threadFactory);
+        executorService.execute(() -> {
             System.out.println("ExecutorService future");
-            return 1;
+            System.out.println(Thread.currentThread().getName());
         });
 
-        CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() -> {
+//        try {
+//            executorService_future.get();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
+
+
+        CompletableFuture.supplyAsync(() -> {
             System.out.println("CompletableFuture");
+//            int i = 1/0;
+            System.out.println(Thread.currentThread().getName());
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            return 1;
-        });
-
-        completableFuture.whenComplete((integer, throwable) -> {
-            System.out.println("whenComplete: " + integer);
-        });
-
-        CompletableFuture<Integer> linkCompletableFuture = completableFuture.thenApply(integer -> {
-            System.out.println("thenApply completableFuture");
-            return 10;
-        });
-
-        CompletableFuture.allOf(completableFuture, linkCompletableFuture).whenComplete((unused, throwable) -> {
-            try {
-                Integer integer = completableFuture.get();
-                Integer integer1 = linkCompletableFuture.get();
-                System.out.println("CompletableFuture.allOf: " + Integer.sum(integer1, integer));
-            } catch (InterruptedException e) {
-
-
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        });
-
-        linkCompletableFuture.thenAccept(integer -> {
-            System.out.println("thenAccept completableFuture" + integer);
-            int i = 1 / 0;
-        }).exceptionally(throwable -> {
+            return null;
+        }, executorService).exceptionally(throwable -> {
             System.out.println(throwable.getMessage());
             return null;
         });
 
-        try {
-            System.out.println(completableFuture.get());
-//            System.out.println(linkCompletableFuture.get());
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+//        completableFuture.whenComplete((integer, throwable) -> {
+//            System.out.println("whenComplete: " + integer);
+//        });
+//
+//        CompletableFuture<Integer> linkCompletableFuture = completableFuture.thenApply(integer -> {
+//            System.out.println("thenApply completableFuture");
+//            return 10;
+//        });
+//
+//        CompletableFuture.allOf(completableFuture, linkCompletableFuture).whenComplete((unused, throwable) -> {
+//            try {
+//                Integer integer = completableFuture.get();
+//                Integer integer1 = linkCompletableFuture.get();
+//                System.out.println("CompletableFuture.allOf: " + Integer.sum(integer1, integer));
+//            } catch (InterruptedException e) {
+//
+//
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//
+//        linkCompletableFuture.thenAccept(integer -> {
+//            System.out.println("thenAccept completableFuture" + integer);
+//            int i = 1 / 0;
+//        }).exceptionally(throwable -> {
+//            System.out.println(throwable.getMessage());
+//            return null;
+//        });
+//
+//        try {
+//            System.out.println(completableFuture.get());
+////            System.out.println(linkCompletableFuture.get());
+//        } catch (InterruptedException | ExecutionException e) {
+//            e.printStackTrace();
+//        }
         System.out.println("start");
+    }
+
+    static class ThreadFactoryImpl implements ThreadFactory {
+        private final AtomicInteger count = new AtomicInteger(1);
+        private final String prefix;
+
+        ThreadFactoryImpl(String prefix) {
+            this.prefix = prefix;
+        }
+
+        @Override
+        public Thread newThread(Runnable runnable) {
+            Thread thread = new Thread(runnable, prefix + count.getAndIncrement());
+            System.out.println("custom thread" + count);
+            return thread;
+        }
     }
 }
