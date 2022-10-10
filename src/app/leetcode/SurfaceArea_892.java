@@ -47,86 +47,21 @@ public class SurfaceArea_892 {
      * @return
      */
     public int surfaceArea(int[][] grid) {
+        int col = grid[0].length;
+        int row = grid.length;
         int sum = 0;
-        for (int i = 0; i < grid.length; i++) {
-            int max = 0;
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] > 0) sum += 2;
-                max = Math.max(max, grid[i][j]);
-            }
-
-            sum += (2 * max);
-        }
-
-        for (int i = 0; i < grid[0].length; i++) {
-            int max = 0;
-            for (int j = 0; j < grid.length; j++) {
-                max = Math.max(max, grid[j][i]);
-            }
-
-            sum += (2 * max);
-        }
-
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (leftValid(i, j, grid) && rightValid(i, j, grid)) {
-                    if (grid[i][j + 1] > grid[i][j]) sum += grid[i][j + 1] - grid[i][j];
-                    if (grid[i][j - 1] > grid[i][j]) sum += grid[i][j - 1] - grid[i][j];
-                }
-            }
-        }
-
-        for (int i = 0; i < grid[0].length; i++) {
-            for (int j = 0; j < grid.length; j++) {
-                if (upValid(j, i, grid) && downValid(j, i, grid)) {
-                    if (grid[j + 1][i] > grid[j][i]) sum += grid[j + 1][i] - grid[j][i];
-                    if (grid[j - 1][i] > grid[j][i]) sum += grid[j - 1][i] - grid[j][i];
-                }
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (grid[i][j] == 0) continue;
+                sum += 2;
+                sum += i - 1 < 0 ? grid[i][j] : Math.max(grid[i][j] - grid[i - 1][j], 0);
+                sum += i + 1 >= row ? grid[i][j] : Math.max(grid[i][j] - grid[i + 1][j], 0);
+                sum += j - 1 < 0 ? grid[i][j] : Math.max(grid[i][j] - grid[i][j - 1], 0);
+                sum += j + 1 >= col ? grid[i][j] : Math.max(grid[i][j] - grid[i][j + 1], 0);
             }
         }
 
         return sum;
-    }
-
-    private boolean upValid(int i, int j, int[][] grid) {
-        int t = --i;
-        if (t < 0) return false;
-        while (t >= 0) {
-            if (grid[t][j] > 0) return true;
-            t--;
-        }
-        return false;
-    }
-
-    private boolean downValid(int i, int j, int[][] grid) {
-        int t = ++i;
-        if (t >= grid.length) return false;
-        while (t < grid.length) {
-            if (grid[t][j] > 0) return true;
-            t++;
-        }
-        return false;
-    }
-
-
-    private boolean leftValid(int i, int j, int[][] grid) {
-        int t = --j;
-        if (t < 0) return false;
-        while (t >= 0) {
-            if (grid[i][t] > 0) return true;
-            t--;
-        }
-        return false;
-    }
-
-    private boolean rightValid(int i, int j, int[][] grid) {
-        int t = ++j;
-        if (t >= grid[0].length) return false;
-        while (t < grid[0].length) {
-            if (grid[i][t] > 0) return true;
-            t++;
-        }
-        return false;
     }
 
 
