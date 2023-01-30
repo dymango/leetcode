@@ -34,7 +34,7 @@ public class TheWu {
         }
 
         String[] input = content.get(0).split(" ");
-        n = Integer.valueOf(input[0]);
+        n = Integer.parseInt(input[0]);
         m = Integer.valueOf(input[1]);
         p = Integer.valueOf(input[2]);
 
