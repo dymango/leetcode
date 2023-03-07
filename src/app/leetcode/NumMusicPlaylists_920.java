@@ -147,11 +147,4 @@ public class NumMusicPlaylists_920 {
 
         return (int) dp[L][N];
     }
-
-    /**
-     * function kd([string]$pod,[string]$ns){
-     * 	kubectl describe $pod -n $ns
-     * }
-     *
-     */
 }
