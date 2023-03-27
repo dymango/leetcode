@@ -1,6 +1,9 @@
 package app.ibmprepare;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -24,6 +27,7 @@ public class ConcurrentUtil {
             System.out.println(Thread.currentThread().getName());
         });
 
+
 //        try {
 //            executorService_future.get();
 //        } catch (InterruptedException e) {
@@ -33,7 +37,7 @@ public class ConcurrentUtil {
 //        }
 
 
-        CompletableFuture.supplyAsync(() -> {
+        CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() -> {
             System.out.println("CompletableFuture");
 //            int i = 1/0;
             System.out.println(Thread.currentThread().getName());
@@ -42,15 +46,16 @@ public class ConcurrentUtil {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            return null;
+            return 7;
         }, executorService).exceptionally(throwable -> {
             System.out.println(throwable.getMessage());
             return null;
         });
+//
+        completableFuture.whenComplete((integer, throwable) -> {
+            System.out.println("whenComplete: " + integer);
+        });
 
-//        completableFuture.whenComplete((integer, throwable) -> {
-//            System.out.println("whenComplete: " + integer);
-//        });
 //
 //        CompletableFuture<Integer> linkCompletableFuture = completableFuture.thenApply(integer -> {
 //            System.out.println("thenApply completableFuture");
@@ -84,7 +89,7 @@ public class ConcurrentUtil {
 //        } catch (InterruptedException | ExecutionException e) {
 //            e.printStackTrace();
 //        }
-        System.out.println("start");
+//        System.out.println("start");
     }
 
     static class ThreadFactoryImpl implements ThreadFactory {
