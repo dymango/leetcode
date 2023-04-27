@@ -1,8 +1,9 @@
 package app.ibmprepare;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,8 +16,68 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ConcurrentUtil {
 
     public static void main(String[] args) {
-        ConcurrentUtil concurrentUtil = new ConcurrentUtil();
-        concurrentUtil.exec();
+//        ConcurrentUtil concurrentUtil = new ConcurrentUtil();
+//        concurrentUtil.exec();
+        List<Object> strings = List.of("1");
+        List<Object> strings2 = List.of("1");
+        System.out.println(compare(strings, strings2));
+        ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+        Thread a = new Thread(() -> {
+            int i = 1;
+            while (true) {
+                threadLocal.set(i++);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        a.start();
+
+        Thread b = new Thread(() -> {
+            int i = 100;
+            while (true) {
+                threadLocal.set(i++);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        b.start();
+        threadLocal.get();
+
+        while (true) {
+            int shj =1;
+        }
+
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+    }
+
+    public static int get() {
+        try {
+            System.out.println("ab");
+            return 1;
+        } finally {
+            System.out.println("cd");
+            return 10;
+        }
+    }
+
+    public static <T,Y> boolean compare(List<T> list, List<Y> list2) {
+        for (int i = 0; i < list.size(); i++) {
+            T t = list.get(i);
+            if (!t.equals(list2.get(i))) return false;
+        }
+
+        return true;
     }
 
     public void exec() {
@@ -52,10 +113,20 @@ public class ConcurrentUtil {
             return null;
         });
 //
+
+        Integer integer1 = null;
+        try {
+            integer1 = completableFuture.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        System.out.println(integer1);
+        System.out.println("jhaiosjdhjlasd");
         completableFuture.whenComplete((integer, throwable) -> {
             System.out.println("whenComplete: " + integer);
         });
-
 //
 //        CompletableFuture<Integer> linkCompletableFuture = completableFuture.thenApply(integer -> {
 //            System.out.println("thenApply completableFuture");

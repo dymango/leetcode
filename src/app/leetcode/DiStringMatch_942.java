@@ -50,8 +50,4 @@ public class DiStringMatch_942 {
         perm[n] = lo; // 最后剩下一个数，此时 lo == hi
         return perm;
     }
-
-    public static void main(String[] args) {
-        System.out.println(get());
-    }
 }
