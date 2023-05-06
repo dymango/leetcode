@@ -18,7 +18,7 @@ public class HJ17 {
                 String substring = s.substring(0, 1);
                 if(!substring.startsWith("A") && !substring.startsWith("S") && !substring.startsWith("D") && !substring.startsWith("W")) continue;
                 try {
-                    Integer integer = Integer.valueOf(s.substring(1));
+                    int integer = Integer.parseInt(s.substring(1));
                     if(substring.equals("A")) {
                         x -= integer;
                     } else if(substring.equals("D")) {
