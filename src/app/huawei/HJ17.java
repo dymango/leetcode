@@ -28,8 +28,7 @@ public class HJ17 {
                     } else {
                         y -= integer;
                     }
-                } catch (Exception e) {
-                    continue;
+                } catch (Exception ignored) {
                 }
             }
 
