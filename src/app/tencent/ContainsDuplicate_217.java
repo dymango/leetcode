@@ -39,6 +39,6 @@ public class ContainsDuplicate_217 {
             if(!set.add(nums[i])) return true;
         }
 
-        return false;
+        return true;
     }
 }
