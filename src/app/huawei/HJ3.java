@@ -19,7 +19,6 @@ public class HJ3 {
             }
         }
 
-        s.stream().sorted(Integer::compare).forEach(integer ->
-            System.out.println(integer));
+        s.stream().sorted(Integer::compare).forEach(System.out::println);
     }
 }
