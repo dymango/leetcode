@@ -16,8 +16,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ConcurrentUtil {
 
     public static void main(String[] args) {
-//        ConcurrentUtil concurrentUtil = new ConcurrentUtil();
-//        concurrentUtil.exec();
+        ConcurrentUtil concurrentUtil = new ConcurrentUtil();
+        concurrentUtil.exec();
         List<Object> strings = List.of("1");
         List<Object> strings2 = List.of("1");
         System.out.println(compare(strings, strings2));
