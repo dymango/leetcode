@@ -16,7 +16,7 @@ public class HJ10 {
             Set<Integer> s = new HashSet<>();
             char[] chars = next.toCharArray();
             for (char aChar : chars) {
-                s.add(Integer.valueOf(aChar));
+                s.add((int) aChar);
             }
 
             System.out.println(s.size());
