@@ -1,6 +1,5 @@
 package app.leetcode;
 
-import app.LeetCode;
 
 /**
  * @author dimmy
