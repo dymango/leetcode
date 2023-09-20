@@ -1,5 +1,8 @@
 package app.leetcode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author dimmy
  */
@@ -44,32 +47,32 @@ public class NumIslands_200 {
      */
     public int numIslands(char[][] grid) {
         int row = grid.length, col = grid[0].length;
-        int[][] island = new int[row][col];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                island[i][j] = i * j;
-            }
-        }
-
         int count = 0;
+        boolean[][] visited = new boolean[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if (grid[i][j] == '0') continue;
-                if (i > 0 && grid[i - 1][j] == '1') {
-                    island[i][j] = island[i - 1][j];
-                } else if (j > 0 && grid[i][j - 1] == '1') {
-                    island[i][j] = island[i][j - 1];
-                } else {
-                    island[i][j] = grid[i][j];
-                    count++;
+                if (visited[i][j] || grid[i][j] != '1') continue;
+                count++;
+                Queue<int[]> queue = new LinkedList<>();
+                queue.add(new int[]{i, j});
+                while (!queue.isEmpty()) {
+                    int size = queue.size();
+                    for (int k = 0; k < size; k++) {
+                        int[] poll = queue.poll();
+                        int x = poll[0];
+                        int y = poll[1];
+                        if (x >= 0 && x < row && y >= 0 && y < col && !visited[x][y] && grid[x][y] == '1') {
+                            visited[poll[0]][poll[1]] = true;
+                            queue.add(new int[]{x - 1, y});
+                            queue.add(new int[]{x, y - 1});
+                            queue.add(new int[]{x, y + 1});
+                            queue.add(new int[]{x + 1, y});
+                        }
+                    }
                 }
             }
         }
 
         return count;
-    }
-
-    private int findParent(int c) {
-        return 1;
     }
 }

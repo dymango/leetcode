@@ -5,9 +5,9 @@ package app.thread;
  */
 public class SynchronizeTest {
     public void p() {
-        synchronized (this) {
+        synchronized(SynchronizeTest.class) {
             for (int i = 0; i < 100; i++) {
-                System.out.println(Thread.currentThread().getName() +  "A" + i);
+                System.out.println(Thread.currentThread().getName() + "A" + i);
             }
         }
     }
