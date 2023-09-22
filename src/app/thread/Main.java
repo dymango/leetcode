@@ -1,8 +1,5 @@
 package app.thread;
 
-import app.pdd.CompareUtil;
-
-import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -16,25 +13,59 @@ public class Main {
         System.out.println(check(new Son(), new Son()));
         System.out.println(check2(Son.class, Son.class));
 
+        Son son = new Son();
+        son.name = "bana";
+        new Thread(() -> {
+            son.name = "apple";
+
+            while (true) {
+                System.out.println(Thread.currentThread().getName() + son.name);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+
+        new Thread(() -> {
+            System.out.println(son.name);
+            son.name = "straw";
+            while (true) {
+                System.out.println(Thread.currentThread().getName() + son.name);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        System.out.println(son.name);
         //0100
         //1000
         //1100
-        System.out.println(4 ^ 8);
-        System.out.println(12 ^ 4);
-
-        CompareUtil<Object, Object> objectObjectCompareUtil = new CompareUtil<>();
-        new Thread(() -> {
-            objectObjectCompareUtil.wait(new ArrayList<>(), new ArrayList<>());
-        }).start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        new Thread(() -> {
-            objectObjectCompareUtil.notifyObject(new ArrayList<>(), new ArrayList<>());
-        }).start();
+//        System.out.println(4 ^ 8);
+//        System.out.println(12 ^ 4);
+//
+//        CompareUtil<Object, Object> objectObjectCompareUtil = new CompareUtil<>();
+//        new Thread(() -> {
+//            objectObjectCompareUtil.wait(new ArrayList<>(), new ArrayList<>());
+//        }).start();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        new Thread(() -> {
+//            objectObjectCompareUtil.notifyObject(new ArrayList<>(), new ArrayList<>());
+//        }).start();
 
     }
 
