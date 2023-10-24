@@ -229,7 +229,7 @@ class MetaJavaQuestionSheet {
 
         E. SQL_2
     */
-    public static String qn6 = "BCDE";
+    public static String qn6 = "C";
 
     /* qn7:
         已知一个完全二叉树的第6层有3个叶子结点，则整个二叉树的结点数最多有
@@ -353,7 +353,6 @@ class MetaJavaQuestionSheet {
         D. Line 12
     */
     public static String qn12 = "D";
-
 
     /* qn13:
         下面代码会分别输出怎样的结果:

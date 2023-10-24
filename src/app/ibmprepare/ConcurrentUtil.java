@@ -1,9 +1,7 @@
 package app.ibmprepare;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,7 +48,7 @@ public class ConcurrentUtil {
         threadLocal.get();
 
         while (true) {
-            int shj =1;
+            int shj = 1;
         }
 
 //        try {
@@ -71,7 +69,7 @@ public class ConcurrentUtil {
         }
     }
 
-    public static <T,Y> boolean compare(List<T> list, List<Y> list2) {
+    public static <T, Y> boolean compare(List<T> list, List<Y> list2) {
         for (int i = 0; i < list.size(); i++) {
             T t = list.get(i);
             if (!t.equals(list2.get(i))) return false;

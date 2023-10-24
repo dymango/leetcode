@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
  * @author dimmy
@@ -13,6 +14,14 @@ import java.util.Set;
 public class Test3 {
 
     public static void main(String[] args) {
+        String s = new String(new char[] {'没','人','比','我','更','懂','j','a','v','a'});
+        String si = "没人比我更懂java";
+        System.out.println(s == si);
+        System.out.println(s.intern() == "没人比我更懂java");
+        System.out.println(s == si.intern());
+    }
+
+    public static void main2(String[] args) {
         Map<String, Object> map = new HashMap<>();
         Integer a = 1;
         map.put("a", a);

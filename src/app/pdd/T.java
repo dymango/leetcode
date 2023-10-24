@@ -6,11 +6,6 @@ import java.util.stream.Stream;
 /**
  * @author dimmy
  */
-public class Cat implements T{
-    public Food food = new Food();
-
-    @Override
-    public void get() {
-
-    }
+public interface T {
+    void get();
 }
