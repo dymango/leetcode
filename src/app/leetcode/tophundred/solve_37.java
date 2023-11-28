@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * @author dimmy
  */
-public class solve_39 {
+public class solve_37 {
 
     private Map<Integer, Set<Character>> cache = new HashMap<>();
     private Map<Integer, Set<Character>> cache2 = new HashMap<>();
