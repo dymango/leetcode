@@ -33,4 +33,8 @@ public class NodeList {
         node = pre;
         int i =1;
     }
+
+    public void r(Node node) {
+
+    }
 }
