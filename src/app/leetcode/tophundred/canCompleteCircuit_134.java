@@ -38,44 +38,34 @@ public class canCompleteCircuit_134 {
     int station = 0;
 
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        this.gas = gas;
-        this.cost = cost;
-        Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < gas.length;) {
-            if(set.contains(i)) break;
-            if (cost[i] > gas[i]) {
-                i++;
-                continue;
+        int length = gas.length;
+        int nextStation = 0;
+        while (true) {
+            int position = nextStation;
+            int curGas = 0;
+            int step = 0;
+            while (curGas + gas[position] >= cost[position]) {
+                curGas += (gas[position] - cost[position]);
+                step++;
+                if (step == length) return nextStation;
+                position = (position + 1) % length;
             }
-            boolean run = run(0, i, i);
-            if (run) return i;
-            set.add(i);
-            if(i == gas.length - 1) break;
-            i = station;
+
+            int next = (position + 1) % length;
+            if(next <= nextStation) break;
+            nextStation = next;
         }
 
         return -1;
     }
 
-    private boolean run(int currentGas, int currentPosition, int start) {
-        int total = currentGas + gas[currentPosition];
-        int consume = cost[currentPosition];
-        if (consume > total) {
-            station = currentPosition + 1;
-            return false;
-        }
-
-        int nextStation = (currentPosition + 1) % gas.length;
-        if (nextStation == start) return true;
-        return run(total - consume, nextStation, start);
-    }
 
     public static void main(String[] args) {
-//        new canCompleteCircuit_134().canCompleteCircuit(new int[]{1,2,3,4,5}, new int[]{3,4,5,1,2});
-//        new canCompleteCircuit_134().canCompleteCircuit(new int[]{2,3,4}, new int[]{3,4,3});
+        System.out.println(new canCompleteCircuit_134().canCompleteCircuit(new int[]{1, 2, 3, 4, 5}, new int[]{3, 4, 5, 1, 2}));
+        System.out.println(new canCompleteCircuit_134().canCompleteCircuit(new int[]{2, 3, 4}, new int[]{3, 4, 3}));
         //[4,5,2,6,5,3]
         //cost =
         //[3,2,7,3,2,9]
-        new canCompleteCircuit_134().canCompleteCircuit(new int[]{4,5,2,6,5,3}, new int[]{3,2,7,3,2,9});
+//        new canCompleteCircuit_134().canCompleteCircuit(new int[]{4, 5, 2, 6, 5, 3}, new int[]{3, 2, 7, 3, 2, 9});
     }
 }
