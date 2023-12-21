@@ -1,6 +1,5 @@
 package app.leetcode.tophundred;
 
-import java.util.PriorityQueue;
 import java.util.Stack;
 
 /**
@@ -19,21 +18,27 @@ public class findMin_155 {
      * int top() 获取堆栈顶部的元素。
      * int getMin() 获取堆栈中的最小元素。
      */
-    PriorityQueue<Integer> queue = new PriorityQueue<>();
     Stack<Integer> stack = new Stack<>();
+    Stack<Integer> helper = new Stack<>();
 
     public findMin_155() {
 
     }
 
     public void push(int val) {
+        if (stack.isEmpty()) {
+            stack.push(val);
+            helper.push(val);
+            return;
+        }
+
         stack.push(val);
-        queue.offer(val);
+        helper.push(Math.min(helper.peek(), val));
     }
 
     public void pop() {
-        Integer pop = stack.pop();
-        queue.remove(pop);
+        stack.pop();
+        helper.pop();
     }
 
     public int top() {
@@ -41,7 +46,7 @@ public class findMin_155 {
     }
 
     public int getMin() {
-        if(queue.isEmpty()) return -1;
-        return queue.peek();
+        if (helper.isEmpty()) return -1;
+        return helper.peek();
     }
 }
