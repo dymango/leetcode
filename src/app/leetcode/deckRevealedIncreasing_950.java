@@ -1,10 +1,8 @@
 package app.leetcode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author dimmy
@@ -64,7 +62,7 @@ public class deckRevealedIncreasing_950 {
         for (int d : deck) {
             Integer i = deque.pollFirst();
             result[i] = d;
-            if(!deque.isEmpty()) {
+            if (!deque.isEmpty()) {
                 deque.offer(deque.pollFirst());
             }
         }
