@@ -4,6 +4,10 @@ package app.timewheel;
 import java.util.List;
 
 /**
+ *
+ *  advantage: 用少的资源调度任务，延时更低
+ *  传统定时任务: 每个定时任务
+ *
  * @author dimmy
  */
 public class TimeWheel {

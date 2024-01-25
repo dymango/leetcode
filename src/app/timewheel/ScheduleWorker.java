@@ -9,11 +9,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
+ *
+
  * @author dimmy
  */
 public class ScheduleWorker {
-    private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-    private ExecutorService executor = Executors.newFixedThreadPool(3);
+    private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+    private final ExecutorService executor = Executors.newFixedThreadPool(3);
 
     public void work() {
         scheduledExecutorService.scheduleAtFixedRate(() -> {

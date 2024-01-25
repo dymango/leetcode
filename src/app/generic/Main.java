@@ -23,5 +23,9 @@ public class Main {
         System.out.println(fruit instanceof Apple);
         System.out.println(fruit instanceof Banana);
         System.out.println(1);
+        ThreadLocal threadLocal;
+
+        MapImpl<String, String> map = new MapImpl<>();
+        System.out.println( map.get("a"));
     }
 }

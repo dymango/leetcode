@@ -22,6 +22,6 @@ public class regionsBySlashes_959 {
      * @return
      */
     public int regionsBySlashes(String[] grid) {
-
+        return 1;
     }
 }
