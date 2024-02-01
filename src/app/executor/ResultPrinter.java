@@ -1,5 +1,7 @@
 package app.executor;
 
+import java.util.List;
+
 /**
  * @author dimmy
  */
@@ -10,6 +12,11 @@ public class ResultPrinter {
                 int[] r = (int[]) object;
                 for (int p : r) {
                     System.out.println(p);
+                }
+            } else if (object instanceof List) {
+                List list = (List) object;
+                for (Object o : list) {
+                    System.out.println(o);
                 }
             } else {
                 System.out.println(object);
