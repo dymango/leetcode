@@ -18,6 +18,11 @@ public class ResultPrinter {
                 for (Object o : list) {
                     System.out.println(o);
                 }
+            } else if (object instanceof String[]) {
+                String[] arr = (String[]) object;
+                for (Object o : arr) {
+                    System.out.println(o);
+                }
             } else {
                 System.out.println(object);
             }
