@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Entrance {
     static String prefix = "app.leetcode.";
-    static String targetClassName = "StrongInt_970";
+    static String targetClassName = "SubarraysDivByK_974";
     static Map<String, List<Object>> paramMap;
 
     public static void main(String[] args) {
@@ -21,5 +21,8 @@ public class Entrance {
     private static void initParamMap() {
         paramMap = new HashMap<>();
         paramMap.put("StrongInt_970", List.of(1, 2, 100));
+        paramMap.put("FlipMatchVoyage_971", List.of(1, 2, 100));
+        paramMap.put("SubarraysDivByK_974", List.of(new int[]{4,5,0,-2,-3,1}, 5));
+//        paramMap.put("SubarraysDivByK_974", List.of(new int[]{5}, 9));
     }
 }
