@@ -78,9 +78,9 @@ public class SubarraysDivByK_974 {
 
     public static void main(String[] args) {
         int sum = -5;
-        int k = -3;
+        int k = 3;
         System.out.println( sum%k);
-        System.out.println( Math.floorMod(sum, 3));
+        System.out.println( Math.floorMod(-7, 2));
         System.out.println( (sum % k + k) % k);
     }
 }
