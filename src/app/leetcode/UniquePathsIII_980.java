@@ -1,8 +1,11 @@
 package app.leetcode;
 
+import app.UnResolve;
+
 /**
  * @author dimmy
  */
+@UnResolve(type = "UniquePathsIII_980")
 public class UniquePathsIII_980 {
 
     /**
@@ -29,7 +32,6 @@ public class UniquePathsIII_980 {
      * @return
      */
     public int uniquePathsIII(int[][] grid) {
-
+        return 1;
     }
-
 }

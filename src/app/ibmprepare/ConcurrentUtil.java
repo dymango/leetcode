@@ -16,8 +16,8 @@ public class ConcurrentUtil {
     public static void main(String[] args) {
         ConcurrentUtil concurrentUtil = new ConcurrentUtil();
         concurrentUtil.exec();
-        List<Object> strings = List.of("1");
-        List<Object> strings2 = List.of("1");
+        List<String> strings = List.of("1");
+        List<Integer> strings2 = List.of(1);
         System.out.println(compare(strings, strings2));
         ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
         Thread a = new Thread(() -> {
