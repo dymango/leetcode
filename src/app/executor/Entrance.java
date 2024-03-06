@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class Entrance {
     static String prefix = "app.leetcode.";
-    static String targetClassName = "StrWithout3a3b_984";
+    static String targetClassName = "SumEvenAfterQueries_985";
     static Map<String, List<Object>> paramMap;
 
     public static void main(String[] args) {
@@ -29,6 +29,7 @@ public class Entrance {
         paramMap.put("SortedSquares_977", buildParam(new int[]{-4, -1, 0, 3, 10}));
         paramMap.put("mincostTickets_983", buildParam(new int[]{1, 4, 6, 7, 8, 20}, new int[]{2, 7, 15}));
         paramMap.put("StrWithout3a3b_984", buildParam(2, 5));
+        paramMap.put("SumEvenAfterQueries_985", buildParam(new int[]{1,2,3,4}, new int[][]{{1,0},{-3,1},{-4,0},{2,3}}));
 
         TreeNode treeNode = new TreeNode(0);
         TreeNode treeNode2 = new TreeNode(3);
