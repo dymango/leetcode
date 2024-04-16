@@ -1,5 +1,7 @@
 package app.bean;
 
+import java.util.HashMap;
+
 /**
  * @author dimmy
  */
@@ -24,10 +26,12 @@ public class NestBean {
     }
 
     public static void main(String[] args) {
-        A a = new A();
-        B b = new B();
-        a.b = b;
-        b.a = a;
-        a.exec();
+//        A a = new A();
+//        B b = new B();
+//        a.b = b;
+//        b.a = a;
+//        a.exec();
+        System.out.println(14 << 2);
+        System.out.println(14 >> 2);
     }
 }
