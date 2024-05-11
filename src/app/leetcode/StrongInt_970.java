@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -47,7 +47,7 @@ public class StrongInt_970 {
 
 
 
-    @Main
+    @MainMethod
     public List<Integer> powerfulIntegers(int x, int y, int bound) {
         List<Integer> integers = new ArrayList<>();
         List<Integer> integers2 = new ArrayList<>();

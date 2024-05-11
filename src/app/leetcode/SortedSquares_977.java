@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 import java.util.PriorityQueue;
 
@@ -15,7 +15,7 @@ public class SortedSquares_977 {
      * @param nums
      * @return
      */
-    @Main
+    @MainMethod
     public int[] sortedSquares(int[] nums) {
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
         for (int num : nums) {

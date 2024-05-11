@@ -14,5 +14,6 @@ import java.lang.annotation.Target;
 @Inherited
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Main {
+public @interface MainMethod {
+
 }

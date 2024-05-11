@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class pancakeSort_969 {
      * @param arr
      * @return
      */
-    @Main
+    @MainMethod
     public List<Integer> pancakeSort(int[] arr) {
         Map<Integer, Integer> indexMap = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {

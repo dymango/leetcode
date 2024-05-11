@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 import app.leetcode.base.TreeNode;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class FlipMatchVoyage_971 {
     int index = -1;
     List<Integer> list = new ArrayList<>();
 
-    @Main
+    @MainMethod
     public List<Integer> flipMatchVoyage(TreeNode root, int[] voyage) {
         if (root.val != voyage[0]) return List.of(-1);
         boolean match = match(root, voyage);

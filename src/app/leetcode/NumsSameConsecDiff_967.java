@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class NumsSameConsecDiff_967 {
      * @param k
      * @return
      */
-    @Main
+    @MainMethod
     public int[] numsSameConsecDiff(int n, int k) {
         List<String> r = new ArrayList<>();
         for (int i = 1; i <= 9; i++) {

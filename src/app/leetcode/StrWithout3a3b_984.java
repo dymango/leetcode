@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 /**
  * @author dimmy
@@ -39,7 +39,7 @@ public class StrWithout3a3b_984 {
      * 来源：力扣（LeetCode）
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
-    @Main
+    @MainMethod
     public String strWithout3a3b(int a, int b) {
         int remainA = a;
         int remainB = b;

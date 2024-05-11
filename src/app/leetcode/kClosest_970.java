@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 import java.util.PriorityQueue;
 
@@ -45,7 +45,7 @@ public class kClosest_970 {
      * @param k
      * @return
      */
-    @Main
+    @MainMethod
     public int[][] kClosest(int[][] points, int k) {
         PriorityQueue<int[]> priorityQueue = new PriorityQueue<>((o1, o2) -> {
             int a = Math.abs(o1[0]);

@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +58,7 @@ public class SubarraysDivByK_974 {
     //链接：https://leetcode.cn/problems/subarray-sums-divisible-by-k/solutions/187947/he-ke-bei-k-zheng-chu-de-zi-shu-zu-by-leetcode-sol/
     //来源：力扣（LeetCode）
     //著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-    @Main
+    @MainMethod
     public int subarraysDivByKV2(int[] nums, int k) {
         //nums = [4,5,0,-2,-3,1], k = 5
         //[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]

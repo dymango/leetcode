@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 import app.leetcode.base.TreeNode;
 
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class DistributeCoins_979 {
 
     int step = 0;
 
-    @Main
+    @MainMethod
     public int distributeCoinsV2(TreeNode root) {
         dfs(root);
         return step;

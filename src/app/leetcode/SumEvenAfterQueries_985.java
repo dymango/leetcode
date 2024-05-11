@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 /**
  * @author dimmy
@@ -29,7 +29,7 @@ public class SumEvenAfterQueries_985 {
      * @param queries
      * @return
      */
-    @Main
+    @MainMethod
     public int[] sumEvenAfterQueries(int[] nums, int[][] queries) {
         int sum = 0;
         int[] r = new int[nums.length];

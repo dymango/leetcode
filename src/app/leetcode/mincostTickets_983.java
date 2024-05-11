@@ -1,6 +1,6 @@
 package app.leetcode;
 
-import app.executor.Main;
+import app.executor.MainMethod;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -65,7 +65,7 @@ public class mincostTickets_983 {
         }
     }
 
-    @Main
+    @MainMethod
     public int mincostTicketsV2(int[] days, int[] costs) {
         Set<Integer> set = new HashSet<>();
         for (int day : days) {
