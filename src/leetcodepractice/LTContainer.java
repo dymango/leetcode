@@ -1,7 +1,6 @@
 package leetcodepractice;
 
 import leetcodepractice.executor.ResultPrinter;
-import leetcodepractice.leetcode.SubtreeWithAllDeepest_865;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
@@ -57,7 +56,7 @@ public class LTContainer {
 
     public static List<File> scanFiles(String directoryPath, String fileExtension) {
         List<File> files = new ArrayList<>();
-        File directory = new File(directoryPath);
+        var directory = new File(directoryPath);
         if (!directory.exists() || !directory.isDirectory()) {
             throw new IllegalArgumentException("Invalid directory path: " + directoryPath);
         }
@@ -66,9 +65,9 @@ public class LTContainer {
     }
 
     private static void scanFilesRecursively(File baseDir, String fileExtension, List<File> files) {
-        File[] fileList = baseDir.listFiles();
+        var fileList = baseDir.listFiles();
         if (fileList != null) {
-            for (File file : fileList) {
+            for (var file : fileList) {
                 if (file.isDirectory()) {
                     scanFilesRecursively(file, fileExtension, files);
                 } else if (file.isFile() && file.getName().endsWith(fileExtension)) {
