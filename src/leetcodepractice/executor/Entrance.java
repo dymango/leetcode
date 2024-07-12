@@ -1,13 +1,14 @@
 package leetcodepractice.executor;
 
-import leetcodepractice.leetcode.ShipWithinDays_1011;
+import leetcodepractice.leetcode.NextLargerNodes_1019;
+import leetcodepractice.videoStitching_1024;
 
 
 /**
  * @author dimmy
  */
 public class Entrance {
-    static Class<?> target = ShipWithinDays_1011.class;
+    static Class<?> target = videoStitching_1024.class;
 
     public static void main(String[] args) {
         MainMethodExecutor mainMethodExecutor = new MainMethodExecutor();
