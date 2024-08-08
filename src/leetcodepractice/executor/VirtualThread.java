@@ -12,8 +12,20 @@ import static java.util.concurrent.Executors.newThreadPerTaskExecutor;
 public class VirtualThread {
 
     public static void main(String[] args) throws InterruptedException {
-        executeTaskWithVT();
-
+        Thread.Builder.OfVirtual thread  = ThreadPools.virtualThreadBuilder("vir" + "-");   // used in single thread, no need to use factory()
+        for (int i = 0; i < 20; i++) {
+            int tag = i;
+            thread.start(() -> {
+                try {
+                    Thread.sleep(2000);
+                    System.out.println("delay" + tag);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+//        executeTaskWithVT();
+        Thread.sleep(10000);
     }
 
     private static void executeTaskWithTP() {

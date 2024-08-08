@@ -69,8 +69,6 @@ public class LongestArithSeqLength_1027 {
         return ans;
     }
 
-
-
     public void longestArithSeqLengthV2(int[] nums) {
         var length = nums.length;
         Map<Integer, Map<Integer, Integer>> memorizedMap = new HashMap<>();
