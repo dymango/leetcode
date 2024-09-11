@@ -1,4 +1,4 @@
-package leetcodepractice;
+package leetcodepractice.core;
 
 import leetcodepractice.executor.ResultPrinter;
 

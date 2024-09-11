@@ -1,7 +1,5 @@
 package leetcodepractice.twohundred;
 
-import leetcodepractice.LeetCode;
-
 /**
  * @author dimmy
  */

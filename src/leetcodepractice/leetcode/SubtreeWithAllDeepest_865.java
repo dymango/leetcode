@@ -1,7 +1,7 @@
 package leetcodepractice.leetcode;
 
-import leetcodepractice.LeetCode;
-import leetcodepractice.UnResolve;
+import leetcodepractice.core.LeetCode;
+import leetcodepractice.core.UnResolve;
 import leetcodepractice.leetcode.base.TreeNode;
 
 /**

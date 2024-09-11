@@ -1,7 +1,5 @@
 package leetcodepractice.leetcode;
 
-import leetcodepractice.LeetCode;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 

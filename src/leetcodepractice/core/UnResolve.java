@@ -1,4 +1,4 @@
-package leetcodepractice;
+package leetcodepractice.core;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

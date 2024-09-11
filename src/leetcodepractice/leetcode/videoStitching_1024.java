@@ -1,4 +1,4 @@
-package leetcodepractice;
+package leetcodepractice.leetcode;
 
 import leetcodepractice.executor.MainMethod;
 import leetcodepractice.executor.MainParam;

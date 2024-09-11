@@ -1,6 +1,6 @@
 package leetcodepractice.jianzhioffer;
 
-import leetcodepractice.UnResolve;
+import leetcodepractice.core.UnResolve;
 
 /**
  * @author dimmy
