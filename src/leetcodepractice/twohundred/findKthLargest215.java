@@ -33,72 +33,71 @@ public class findKthLargest215 {
      */
     public static void main(String[] args) {
         System.out.println(new findKthLargest215().findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2));
-//        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, 2,0}, 1));
-//        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, -1}, 2));
+        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, 2,0}, 1));
+        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, -1}, 2));
 
     }
 
-//    public int findKthLargest(int[] nums, int k) {
-//        var center = findCenter(nums, 0, nums.length - 1);
-//        if(center == nums.length - 1) {
-//            return nums[nums.length - k];
-//        }
-//        var width = nums.length - center - 1;
-//        if (width >= k) {
-//            var newArr = new int[width];
-//            System.arraycopy(nums, center + 1, newArr, 0, width);
-//            return findKthLargest(newArr, k);
-//        } else {
-//            var newArr = new int[center + 1];
-//            System.arraycopy(nums, 0, newArr, 0, center + 1);
-//            return findKthLargest(newArr, k - width);
-//        }
-//    }
-//
-//    private int findCenter(int[] nums, int start, int end) {
-//        int tag = nums[start];
-//        int s = start + 1;
-//        int e = end;
-//        while (s < e) {
-//            while (s < nums.length && nums[s] < tag) s++;
-//            while (e >= 0 && nums[e] > tag) e--;
-//            if (s < e) {
-//                int temp = nums[s];
-//                nums[s] = nums[e];
-//                nums[e] = temp;
-//                s++;
-//                e--;
-//            } else {
-//                break;
-//            }
-//        }
-//
-//        if(nums[e] < nums[start]) {
-//            int temp = nums[start];
-//            nums[start] = nums[e];
-//            nums[e] = temp;
-//        }
-//
-//        return e;
-//    }
+    public int findKthLargest(int[] nums, int k) {
+        var center = findCenter(nums, 0, nums.length - 1);
+        var width = nums.length - center - 1;
+        int target = nums.length - k;
+        if(target == center) return nums[center];
+        if (center < target) {
+            var newArr = new int[width];
+            System.arraycopy(nums, center + 1, newArr, 0, width);
+            return findKthLargest(newArr, k);
+        } else {
+            var newArr = new int[center];
+            System.arraycopy(nums, 0, newArr, 0, center);
+            return findKthLargest(newArr, k - width - 1);
+        }
+    }
 
-    int quickselect(int[] nums, int l, int r, int k) {
-        if (l == r) return nums[k];
-        int x = nums[l], i = l - 1, j = r + 1;
-        while (i < j) {
-            do i++; while (nums[i] < x);
-            do j--; while (nums[j] > x);
-            if (i < j){
-                int tmp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = tmp;
+    private int findCenter(int[] nums, int start, int end) {
+        int tag = nums[start];
+        int s = start + 1;
+        int e = end;
+        while (s < e) {
+            while (s < nums.length && nums[s] < tag) s++;
+            while (e >= 0 && nums[e] > tag) e--;
+            if (s < e) {
+                int temp = nums[s];
+                nums[s] = nums[e];
+                nums[e] = temp;
+                s++;
+                e--;
+            } else {
+                break;
             }
         }
-        if (k <= j) return quickselect(nums, l, j, k);
-        else return quickselect(nums, j + 1, r, k);
+
+        if(nums[e] < nums[start]) {
+            int temp = nums[start];
+            nums[start] = nums[e];
+            nums[e] = temp;
+        }
+
+        return e;
     }
-    public int findKthLargest(int[] _nums, int k) {
-        int n = _nums.length;
-        return quickselect(_nums, 0, n - 1, n - k);
-    }
+
+//    int quickselect(int[] nums, int l, int r, int k) {
+//        if (l == r) return nums[k];
+//        int x = nums[l], i = l - 1, j = r + 1;
+//        while (i < j) {
+//            do i++; while (nums[i] < x);
+//            do j--; while (nums[j] > x);
+//            if (i < j){
+//                int tmp = nums[i];
+//                nums[i] = nums[j];
+//                nums[j] = tmp;
+//            }
+//        }
+//        if (k <= j) return quickselect(nums, l, j, k);
+//        else return quickselect(nums, j + 1, r, k);
+//    }
+//    public int findKthLargest(int[] _nums, int k) {
+//        int n = _nums.length;
+//        return quickselect(_nums, 0, n - 1, n - k);
+//    }
 }
