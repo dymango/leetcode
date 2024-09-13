@@ -51,6 +51,4 @@ public class rob213 {
 
         return Math.max(dp[dp.length - 2], dp2[dp2.length - 1]);
     }
-
-
 }
