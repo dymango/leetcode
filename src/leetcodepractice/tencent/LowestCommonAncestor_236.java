@@ -61,6 +61,7 @@ public class LowestCommonAncestor_236 {
         if ((lson && rson) || ((root.val == p.val || root.val == q.val) && (lson || rson))) {
             ans = root;
         }
+
         return lson || rson || (root.val == p.val || root.val == q.val);
     }
 

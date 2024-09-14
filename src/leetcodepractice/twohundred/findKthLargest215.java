@@ -1,7 +1,5 @@
 package leetcodepractice.twohundred;
 
-import leetcodepractice.core.LeetCode;
-
 /**
  * @author dimmy
  */
@@ -32,72 +30,56 @@ public class findKthLargest215 {
      * @return
      */
     public static void main(String[] args) {
-        System.out.println(new findKthLargest215().findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2));
-        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, 2,0}, 1));
-        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, -1}, 2));
+//        System.out.println(new findKthLargest215().findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2));
+//        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, 2, 0}, 1));
+//        System.out.println(new findKthLargest215().findKthLargest(new int[]{-1, -1}, 2));
+        System.out.println(new findKthLargest215().findKthLargest(new int[]{3,3,3,3,3,3,3,3,3}, 1));
 
     }
 
     public int findKthLargest(int[] nums, int k) {
-        var center = findCenter(nums, 0, nums.length - 1);
-        var width = nums.length - center - 1;
-        int target = nums.length - k;
-        if(target == center) return nums[center];
+        var length = nums.length;
+        var center = quickSort(nums, 0, length - 1);
+        var target = length - k;
+        if (center == target) return nums[center];
+        var width = length - center - 1;
         if (center < target) {
-            var newArr = new int[width];
+            int[] newArr = new int[width];
             System.arraycopy(nums, center + 1, newArr, 0, width);
             return findKthLargest(newArr, k);
-        } else {
-            var newArr = new int[center];
-            System.arraycopy(nums, 0, newArr, 0, center);
-            return findKthLargest(newArr, k - width - 1);
         }
+
+        int[] newArr = new int[center];
+        System.arraycopy(nums, 0, newArr, 0, center);
+        return findKthLargest(newArr, k - width - 1);
     }
 
-    private int findCenter(int[] nums, int start, int end) {
-        int tag = nums[start];
-        int s = start + 1;
-        int e = end;
+    int quickSort(int[] nums, int start, int end) {
+        if (nums.length < 2) return 0;
+        var tag = nums[0];
+        int s = start + 1, e = end;
         while (s < e) {
             while (s < nums.length && nums[s] < tag) s++;
-            while (e >= 0 && nums[e] > tag) e--;
+            while (e > 0 && nums[e] > tag) e--;
             if (s < e) {
-                int temp = nums[s];
+                var t = nums[s];
                 nums[s] = nums[e];
-                nums[e] = temp;
-                s++;
-                e--;
+                nums[e] = t;
             } else {
                 break;
             }
+
+            s++;
+            e--;
         }
 
-        if(nums[e] < nums[start]) {
-            int temp = nums[start];
-            nums[start] = nums[e];
-            nums[e] = temp;
+        if (nums[e] < tag) {
+            var t = nums[e];
+            nums[e] = nums[0];
+            nums[0] = t;
         }
 
         return e;
     }
 
-//    int quickselect(int[] nums, int l, int r, int k) {
-//        if (l == r) return nums[k];
-//        int x = nums[l], i = l - 1, j = r + 1;
-//        while (i < j) {
-//            do i++; while (nums[i] < x);
-//            do j--; while (nums[j] > x);
-//            if (i < j){
-//                int tmp = nums[i];
-//                nums[i] = nums[j];
-//                nums[j] = tmp;
-//            }
-//        }
-//        if (k <= j) return quickselect(nums, l, j, k);
-//        else return quickselect(nums, j + 1, r, k);
-//    }
-//    public int findKthLargest(int[] _nums, int k) {
-//        int n = _nums.length;
-//        return quickselect(_nums, 0, n - 1, n - k);
-//    }
 }
