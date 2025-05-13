@@ -1,3 +1,5 @@
+package application;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -6,30 +8,10 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * @author dimmy
  */
-public class Temp {
+public class SubjectThreeLight {
 
     public static void main(String[] args) {
-        Integer YJ = 1;
-        Integer Y = 3;
-        Integer J = 2;
-        Integer SS = 4;
-        Map<String, Integer> subjects = new HashMap<>();
-        subjects.put("超车", 1);
-        subjects.put("通过急弯", 1);
-        subjects.put("通过坡路", 1);
-        subjects.put("通过拱桥", 1);
-        subjects.put("通过人行横道", 1);
-        subjects.put("通过没有交通信号灯控制的路口", 1);
-        subjects.put("同方向近距离跟车行驶", 2);
-        subjects.put("与机动车会车", 2);
-        subjects.put("通过有交通信号灯路口", 2);
-        subjects.put("在照明良好的道路上行驶", 2);
-        subjects.put("在无照明的道路上行驶", 3);
-        subjects.put("在照明不良的道路上行驶", 3);
-        subjects.put("路边临时停车", 4);
-
-        Map<Integer, Integer> resultCount = new HashMap<>();
-
+        var subjects = getMap();
         var titles = subjects.keySet().stream().toList();
         var r = ThreadLocalRandom.current();
         int errorCount = 0;
@@ -64,5 +46,23 @@ public class Temp {
         }
 
         System.out.printf("答题结束, 正确%d题, 错误%d题, 平均耗时:%.4f秒, 最大耗时: %.4f秒", rightCount, errorCount, totalTime / 50, maxTime);
+    }
+
+    private static Map<String, Integer> getMap() {
+        Map<String, Integer> subjects = new HashMap<>();
+        subjects.put("超车", 1);
+        subjects.put("通过急弯", 1);
+        subjects.put("通过坡路", 1);
+        subjects.put("通过拱桥", 1);
+        subjects.put("通过人行横道", 1);
+        subjects.put("通过没有交通信号灯控制的路口", 1);
+        subjects.put("同方向近距离跟车行驶", 2);
+        subjects.put("与机动车会车", 2);
+        subjects.put("通过有交通信号灯路口", 2);
+        subjects.put("在照明良好的道路上行驶", 2);
+        subjects.put("在无照明的道路上行驶", 3);
+        subjects.put("在照明不良的道路上行驶", 3);
+        subjects.put("路边临时停车", 4);
+        return subjects;
     }
 }
