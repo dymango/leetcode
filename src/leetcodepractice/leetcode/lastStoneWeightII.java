@@ -1,8 +1,6 @@
 package leetcodepractice.leetcode;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author dimmy
@@ -20,6 +18,8 @@ public class lastStoneWeightII {
      * <p>
      * <p>
      * 最后两块石头必须尽量地重且重量相近
+     * <p>
+     * 消尽量小的石头，
      * <p>
      * 2 7 4 1 8 1
      * 111
@@ -42,58 +42,45 @@ public class lastStoneWeightII {
      * 24
      * <p>
      * 1,1,2,3,5,8,13,21,34,55,89,14,23,37,61,98
-     *
+     * <p>
      * [21,60,61,20,31]
      * 5
-     *      * 2
-     *
-     *
-     *
+     * * 2
+     * <p>
+     * <p>
+     * <p>
      * 20 21 31 60 61
      * 20 30 39
      * 10
-     *
+     * <p>
      * 41
      * 39 31
-     *
      *
      * @param stones
      * @return
      */
     public int lastStoneWeightII(int[] stones) {
-        List<Integer> stoneList = Arrays.stream(stones).boxed().sorted().collect(Collectors.toList());
-        while (stoneList.size() > 2) {
-            if(stoneList.size() > 3) {
-                var last = stoneList.getLast();
-                var smallerOne = stoneList.get(stoneList.size() - 3);
-                stoneList.remove(stoneList.size() - 3);
-                stoneList.removeLast();
-                if (last > smallerOne) {
-                    var r = last - smallerOne;
-                    stoneList.add(r);
-                }
-            } else {
-                var last = stoneList.getLast();
-                stoneList.removeLast();
-                var smallerOne = stoneList.getLast();
-                stoneList.removeLast();
-                if (last > smallerOne) {
-                    var r = last - smallerOne;
-                    stoneList.add(r);
-                }
-            }
+        int sum = Arrays.stream(stones).sum();
+        int target = sum / 2;
+        boolean[] dp = new boolean[target + 1];
+        dp[0] = true;
 
-            stoneList.sort(Integer::compareTo);
+        for (int stone : stones) {
+            for (int j = target; j >= stone; j--) {
+                dp[j] = dp[j] || dp[j - stone];
+            }
         }
 
-        if (stoneList.isEmpty()) return 0;
-        if (stoneList.size() == 1) return stoneList.getFirst();
-
-        return stoneList.getLast() - stoneList.getFirst();
+        for (int j = target; j >= 0; j--) {
+            if (dp[j]) {
+                return sum - 2 * j;
+            }
+        }
+        return 0;
     }
 
     public static void main(String[] args) {
-        new lastStoneWeightII().lastStoneWeightII(new int[]{21,60,61,20,31});
-//        new lastStoneWeightII().lastStoneWeightII(new int[]{1,1,2,3,5,8,13,21,34,55,89,14,23,37,61,98});
+//        System.out.println(new lastStoneWeightII().lastStoneWeightII(new int[]{21, 60, 61, 20, 31}));
+        System.out.println(new lastStoneWeightII().lastStoneWeightII(new int[]{1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 14, 23, 37, 61, 98}));
     }
 }
