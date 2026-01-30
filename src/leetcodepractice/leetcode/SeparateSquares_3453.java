@@ -21,7 +21,7 @@ public class SeparateSquares_3453 {
      * @return
      */
     public double separateSquares(int[][] squares) {
-
+        return 1;
     }
 
 }
