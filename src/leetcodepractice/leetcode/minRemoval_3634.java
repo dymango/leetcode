@@ -1,6 +1,5 @@
 package leetcodepractice.leetcode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -31,31 +30,36 @@ public class minRemoval_3634 {
      *
      * @param nums
      * @param k
-     * @return
-     *
-     * 69,186,86,137,156,189
+     * @return 69,186,86,137,156,189
+     * 2
+     * <p>
+     * 3
+     * 2
+     * <p>
+     * <p>
+     * [466,306,76,17,60,246,341,284]
+     * 2
      */
+    public static void main(String[] args) {
+//        new minRemoval_3634().minRemoval(new int[]{69, 186, 86, 137, 156, 189}, 2);
+//        new minRemoval_3634().minRemoval(new int[]{466, 306, 76, 17, 60, 246, 341, 284}, 2);
+        new minRemoval_3634().minRemoval(new int[]{2,1,5}, 2);
+    }
+
     public int minRemoval(int[] nums, int k) {
-        Arrays.sort(nums);
-        var list = new ArrayList<Integer>();
-        for (var num : nums) {
-            list.add(num);
-        }
-
         if (nums.length == 1) return 0;
-        int count = 0;
-        while (list.size() >= 2 && list.getFirst() * k < list.getLast()) {
-            var left = list.getLast() / list.get(1);
-            var right = list.get(list.size() - 2) / list.getFirst();
-            if (left < right) {
-                list.removeFirst();
+        Arrays.sort(nums);
+        int start = 0, end = start;
+        int max = 0;
+        while (end < nums.length) {
+            if (nums[end] <= (long)nums[start] * k) {
+                max = Math.max(max, end - start + 1);
+                end++;
             } else {
-                list.removeLast();
+                start++;
             }
-
-            count++;
         }
 
-        return count;
+        return nums.length - max;
     }
 }
